@@ -52,6 +52,9 @@ namespace Math
     Math::Vector <Data_T, Measurements> operator * (const Vector <Data_T, Measurements>& from, const size_t k);
 
     template <typename Data_T, size_t Measurements>
+    Math::Vector <Data_T, Measurements> operator * (const size_t k, const Vector <Data_T, Measurements>& from);
+
+    template <typename Data_T, size_t Measurements>
     Math::Vector <Data_T, Measurements> operator / (const Vector <Data_T, Measurements>& from, const size_t k);
 
     template <typename Data_T, size_t Measurements>
@@ -256,6 +259,16 @@ bool operator != (const Math::Vector <Data_T, Measurements>& from, const Math::V
 
 template <typename Data_T, size_t Measurements>
 Math::Vector <Data_T, Measurements> operator * (const Math::Vector <Data_T, Measurements>& from, const double_t k)
+{
+    Math::Vector <Data_T, Measurements> copy (from);
+
+    copy *= k;
+
+    return copy;
+}
+
+template <typename Data_T, size_t Measurements>
+Math::Vector <Data_T, Measurements> operator * (const double_t k, const Math::Vector <Data_T, Measurements>& from)
 {
     Math::Vector <Data_T, Measurements> copy (from);
 
