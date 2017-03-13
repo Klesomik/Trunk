@@ -1,13 +1,3 @@
-struct MyString : public std::string
-{
-    operator const char* ();
-};
-
-MyString::operator const char* ()
-{
-    return std::string::data ();
-}
-
 void System (const char* cmd, ...);
 
 void System (const char* cmd, ...)

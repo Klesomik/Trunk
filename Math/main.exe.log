@@ -1,0 +1,37 @@
+
+--------------------------------------------------
+TXLib сообщает:
+
+Программа: C:\Users\Artem\Documents\GitHub\Trunk\Math\main.exe, файл: C:/Users/Artem/Desktop/TX/TXLibNew.h, строка: 9271, функция: COLORREF {anonymous}::TX::txGetColor(HDC),
+
+Сообщение: Обнаружен нулевой или ложный результат.
+
+#1: TXLib [Ver: 00173a, Rev: 105], Instance: 0x00000000005343B8 (64-bit), Flags: CMdRet, Thread: 0x1588 (Main), GetLastError(): 87 (Параметр задан неверно). 
+
+--------------------------------------------------
+Трассировка стека:
+
+# 0 0x000000000040A777 in C:\Users\Artem\Documents\GitHub\Trunk\Math\main.exe!(??)
+# 1 0x0000000000410D3C in C:\Users\Artem\Documents\GitHub\Trunk\Math\main.exe!(??)
+# 2 0x000000000041235A in C:\Users\Artem\Documents\GitHub\Trunk\Math\main.exe!(??)
+# 3 0x0000000000412922 in C:\Users\Artem\Documents\GitHub\Trunk\Math\main.exe!(??)
+# 4 0x00000000004013E8 in C:\Users\Artem\Documents\GitHub\Trunk\Math\main.exe!(??)
+# 5 0x0000000000401526 in C:\Users\Artem\Documents\GitHub\Trunk\Math\main.exe!(??)
+# 6 0x00000000771E59C8 in C:\windows\system32\kernel32.dll!BaseThreadInitThunk
+# 7 0x000000007731A55C in C:\windows\SYSTEM32\ntdll.dll!RtlUserThreadStart
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	C:/Users/Artem/Desktop/TX/TXLibNew.h
+Compiled:	Mar  7 2017 14:43:16, DEBUG, GNU g++ 5.3.0, std=201402L
+Started:	Mar 07 2017 14:43:21
+
+Run file:	C:\Users\Artem\Documents\GitHub\Trunk\Math\main.exe
+Directory:	C:\Users\Artem\Documents\GitHub\Trunk\Math
+
+--------------------------------------------------

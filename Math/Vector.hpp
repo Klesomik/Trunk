@@ -1,6 +1,5 @@
 #include <iostream>
 #include <cmath>
-#include "Point.hpp"
 
 //TODO: more constructors, double_t -> Type_T, variadic templates
 
@@ -9,12 +8,15 @@ namespace Math
     template <typename Data_T, size_t Measurements>
     class Vector
     {
+        private:
+            using Vector_t = Vector <Data_T, Measurements>;
+
         public:
             Vector ();
             Vector (const Data_T from[]);
             Vector (const Vector <Data_T, Measurements>& from);
-            Vector (std::initializer_list <Data_T> from);
-            Vector (const Point& start, const Point& finish);
+            Vector (const std::initializer_list <Data_T>& from);
+            Vector (const Vector& start, const Vector& finish);
 
             double_t lenght ();
 
@@ -38,9 +40,6 @@ namespace Math
         protected:
             Data_T coords_[Measurements];
     };
-
-    template <typename Data_T, size_t Measurements>
-    void swap (Vector <Data_T, Measurements>& from, Vector <Data_T, Measurements>& to);
 
     template <typename Data_T, size_t Measurements>
     bool operator == (const Vector <Data_T, Measurements>& from, const Vector <Data_T, Measurements>& to);
@@ -73,7 +72,10 @@ namespace Math
     std::istream& operator >> (std::istream& in, Math::Vector <Data_T, Measurements>& value);
 
     template <typename Data_T, size_t Measurements>
-    std::ostream& operator << (std::ostream& out, const Math::Vector <Data_T, Measurements>& value);
+    std::ostream& operator << (std::ostream& out, Math::Vector <Data_T, Measurements>& value);
+
+    template <typename Data_T, size_t Measurements>
+    double Distance (Math::Vector <Data_T, Measurements>& first, Math::Vector <Data_T, Measurements>& second);
 
     typedef Vector <   int, 2> VectorI2;
     typedef Vector < float, 2> VectorF2;
@@ -110,14 +112,14 @@ Math::Vector <Data_T, Measurements>::Vector (const Vector <Data_T, Measurements>
 }
 
 template <typename Data_T, size_t Measurements>
-Math::Vector <Data_T, Measurements>::Vector (std::initializer_list <Data_T> from):
+Math::Vector <Data_T, Measurements>::Vector (const std::initializer_list <Data_T>& from):
     coords_ ()
 {
     std::copy (from.begin (), from.begin () + Measurements, coords_);
 }
 
 template <typename Data_T, size_t Measurements>
-Math::Vector <Data_T, Measurements>::Vector (const Point& start, const Point& finish):
+Math::Vector <Data_T, Measurements>::Vector (const Vector& start, const Vector& finish):
     coords_ ()
 {
     for (size_t i = 0; i < Measurements; i++)
@@ -235,11 +237,6 @@ Data_T* Math::Vector <Data_T, Measurements>::coords ()
 }
 
 template <typename Data_T, size_t Measurements>
-void swap (Vector <Data_T, Measurements>& from, Vector <Data_T, Measurements>& to)
-{
-}
-
-template <typename Data_T, size_t Measurements>
 bool operator == (const Math::Vector <Data_T, Measurements>& from, const Math::Vector <Data_T, Measurements>& to)
 {
     for (size_t i = 0; i < Measurements; i++)
@@ -327,7 +324,7 @@ Data_T operator ^ (const Math::Vector <Data_T, Measurements>& from, const Math::
 }
 
 template <typename Data_T, size_t Measurements>
-std::istream& operator >> (std::istream& in, Math::Vector <Data_T, Measurements>& value)
+std::istream& Math::operator >> (std::istream& in, Math::Vector <Data_T, Measurements>& value)
 {
     for (size_t i = 0; i < Measurements; i++)
         in >> value[i];
@@ -336,10 +333,21 @@ std::istream& operator >> (std::istream& in, Math::Vector <Data_T, Measurements>
 }
 
 template <typename Data_T, size_t Measurements>
-std::ostream& operator << (std::ostream& out, const Math::Vector <Data_T, Measurements>& value)
+std::ostream& Math::operator << (std::ostream& out, Math::Vector <Data_T, Measurements>& value)
 {
     for (size_t i = 0; i < Measurements; i++)
         out << value[i] << " ";
 
     return out;
+}
+
+template <typename Data_T, size_t Measurements>
+double Math::Distance (Math::Vector <Data_T, Measurements>& first, Math::Vector <Data_T, Measurements>& second)
+{
+    double value = 0;
+
+    for (int i = 0; i < Measurements; i++)
+        value += (first[i] - second[i]) * (first[i] - second[i]);
+
+    return sqrt (value);
 }
