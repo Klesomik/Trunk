@@ -267,11 +267,7 @@ Math::Vector <Data_T, Measurements> operator * (const Math::Vector <Data_T, Meas
 template <typename Data_T, size_t Measurements>
 Math::Vector <Data_T, Measurements> operator * (const double_t k, const Math::Vector <Data_T, Measurements>& from)
 {
-    Math::Vector <Data_T, Measurements> copy (from);
-
-    copy *= k;
-
-    return copy;
+    return from * k;
 }
 
 template <typename Data_T, size_t Measurements>
