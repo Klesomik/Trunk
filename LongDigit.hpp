@@ -15,8 +15,12 @@ class LongDigit
         LongDigit& operator *= (LongDigit &from);
         LongDigit& operator /= (const LongDigit &from);
 
-        void normalize ();
+        int operator [] (int index);
 
+        void normalize ();
+        void inverse ();
+
+        int size ();
         std::vector<int>& data ();
 
     private:
@@ -133,10 +137,26 @@ LongDigit& LongDigit::operator /= (const LongDigit& from)
     return (*this);
 }
 
+int LongDigit::operator [] (int index)
+{
+	return data_[index];
+}
+
 void LongDigit::normalize ()
 {
 	while ((!data_.empty ()) && (data_.back () == 0))
 		data_.pop_back ();
+}
+
+void LongDigit::inverse ()
+{
+	for (int i = 0; i < data_.size (); i++)
+		data_[i] = (9 - data_[i]);
+}
+
+int LongDigit::size ()
+{
+	return data_.size ();
 }
 
 std::vector<int>& LongDigit::data ()
