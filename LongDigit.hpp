@@ -7,14 +7,12 @@ class LongDigit
         LongDigit (const int from);
         LongDigit (const LongDigit& from);
 
-        LongDigit& operator = (const int from);
         LongDigit& operator = (const LongDigit& from);
 
-        LongDigit& operator += (const int from);
         LongDigit& operator += (const LongDigit& from);
-
-        LongDigit& operator *= (const int from);
+        LongDigit& operator -= (const LongDigit& from);
         LongDigit& operator *= (const LongDigit& from);
+        LongDigit& operator /= (const LongDigit& from);
 
         const std::vector <int>& data () const;
 
@@ -59,11 +57,6 @@ LongDigit& LongDigit::operator = (const LongDigit& from)
     return (*this);
 }
 
-LongDigit& LongDigit::operator += (const int from)
-{
-    return (*this) += LongDigit (from);
-}
-
 LongDigit& LongDigit::operator += (const LongDigit& from)
 {
     data_.resize (std::max (data_.size (), from.data_.size ()));
@@ -86,12 +79,17 @@ LongDigit& LongDigit::operator += (const LongDigit& from)
     return (*this);
 }
 
-LongDigit& LongDigit::operator *= (const int from)
+LongDigit& LongDigit::operator -= (const LongDigit& from)
 {
-    return (*this) *= LongDigit (from);
+    return (*this);
 }
 
 LongDigit& LongDigit::operator *= (const LongDigit& from)
+{
+    return (*this);
+}
+
+LongDigit& LongDigit::operator /= (const LongDigit& from)
 {
     return (*this);
 }
